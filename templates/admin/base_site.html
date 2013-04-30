@@ -1,0 +1,12 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans '课题组管理界面' %}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans '课题组管理界面' %}</h1>
+    <input type="button" value="恢复默认状态" id="defaultcquenv">
+
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>重庆大学城环学院</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="{{ STATIC_URL }}css/style_b.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}css/custom.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/custom.js"></script>
+</head>
+<body>
+<div id="container">
+<div class="row">
+<div id="nav">
+
+    <a href="http://cqu.edu.cn" id="logo"><img src="{{ STATIC_URL }}images/logo.png"/></a>
+
+    <div class="topnav" style="float: left">
+        <a href="http://cquenv.org/sitemap/"
+           style="background: url('{{ STATIC_URL }}images/dot1.gif') no-repeat left center;">网站地图</a>
+        <a href="http://cquenv.org/">城环学院课题组</a>
+        <a href="http://cqu.edu.cn/">重庆大学</a>
+
+        <div class="topnav_kuang">
+            <input type="text" class="text btn-small" value=" 请输入关键字">
+        </div>
+    </div>
+
+    <div class="navmenu">
+        <ul id="sddm">
+            <li>
+                <a href="/" onmouseover="mopen('m1')" onmouseout="mclosetime()" id="startpage">首页</a>
+
+                <div id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                    <!--		<a href="#">HTML DropDown</a>
+                            <a href="#">DHTML DropDown menu</a>
+                            <a href="#">JavaScript DropDown</a>
+                            <a href="#">DropDown Menu</a>
+                            <a href="#">CSS DropDown</a>-->
+                </div>
+            </li>
+
+            <li><a href="#" onmouseover="mopen('m2')" onmouseout="mclosetime()">课题组仪器现状</a>
+
+                <div id="m2" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                    <a href="device" id="device">实验室设备</a>
+                    <a href="instruction" id="notice">使用注意事项</a>
+                </div>
+            </li>
+            <li><a href="graduate" onmouseover="mopen('m3')" onmouseout="mclosetime()" id="graduates">历届毕业生专栏</a>
+
+                <div id="m3" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                    <!--<a href="#">Download Help File</a>
+                    <a href="#">Read online</a>-->
+                </div>
+            </li>
+            <li><a href="#" onmouseover="mopen('m4')" onmouseout="mclosetime()">资料下载</a>
+
+                <div id="m4" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                    <a href="#">资料一</a>
+                    <a href="#">资料二</a>
+                </div>
+            </li>
+            <li><a href="#" onmouseover="mopen('m5')" onmouseout="mclosetime()">合作链接</a>
+
+                <div id="m5" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                    <a href="#">皇家学院</a>
+                    <a href="#">xxxx</a>
+                </div>
+            </li>
+            <li><a href="#" onmouseover="mopen('m6')" onmouseout="mclosetime()">联系我们</a>
+
+                <div id="m6" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                    <a href="#">联系电话</a>
+                    <a href="#">电子邮件</a>
+                    <a href="http://www.cquenv.org/" target="_blank">业务网站</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+<div class="row">
+    <div id="header"><img src="{{ STATIC_URL }}images/main_b.jpg"/></div>
+</div>
+<div class=""></div>
+    {% if labnoticelist %}
+        {% for labnotice in labnoticelist %}
+            <h3>{{ labnotice.name }}</h3>
+
+            {{ labnotice.detail|safe }}
+        {% endfor %}
+    {% else %}
+<div class="">
+<h3>仪器设备使用规章制度</h3>
+<ol>
+  <li><p>实验室的所有仪器设备由仪器设备管理员负责总管理，各分室所用设备由分室管理人员负责具体管理</p></li>
+<li><p>实验室必须建立严格的安全制度，做好仪器设备的防火、防盗、防爆、防潮、防水、防尘、防腐、防震等工作</p></li>
+<li><p>对大型精密贵重仪器设备应建立管理挡案，建立完整的操作规程、仪器工作日记</p></li>
+<li><p>首次使用仪器人员，必须由设备管理人员进行上岗培训，在熟悉操作规程并具有独立操作能力之后方可上机操作，未经专门培训的员不准进行大型精密贵重仪器设备的操作</p></li>
+<li><p>所有仪器使用者，都应严格按仪器操作规程进行，认真填写使用记录，发现问题及时通报管理员，对违反操作规程并造成仪器损坏者，将视情节轻重给予一定处罚</p></li>
+<li><p>全室人员应认真执行以上各项规章制度，精心操作，保证仪器的完好率，同时发扬团结协作精神，最大限度地提高仪器的使用率，以保证各项科研任务的顺利完成</p></li>
+<li><p>仪器设备的使用实行“专管共用”或“协作共用”的原则，在完成教学、科研等任务的同时，促进校内跨系（院）、跨学科的教学、科研协作，并积极开展校际和社会企事业单位间的协作等技术有偿服务活动</p></li>
+</ol>
+</div>
+    {% endif %}
+</div>
+
+      <div id="copyright"><a href="#" target="_blank">重庆大学</a> | <a href="#" target="_blank">城市环境学院</a> |  © Copyright Chongqing CQUENV All Rights Reserved
+      </div>
+</body>
+</html>

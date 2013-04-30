@@ -1,0 +1,408 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>重庆大学城环学院</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="{{ STATIC_URL }}css/style_b.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}css/custom.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/custom.js"></script>
+</head>
+<body>
+<div id="container">
+<div class="row">
+<div id="nav">
+
+    <a href="http://cqu.edu.cn" id="logo"><img src="{{ STATIC_URL }}images/logo.png"/></a>
+
+    <div class="topnav" style="float: left">
+        <a href="http://cquenv.org/sitemap/" style="background: url('{{ STATIC_URL }}images/dot1.gif') no-repeat left center;">网站地图</a>
+        <a href="http://cquenv.org/">城环学院课题组</a>
+        <a href="http://cqu.edu.cn/">重庆大学</a>
+
+        <div class="topnav_kuang">
+            <input type="text" class="text btn-small" value=" 请输入关键字">
+        </div>
+    </div>
+
+    <div class="navmenu">
+        <ul id="sddm">
+            <li>
+                <a href="/" onmouseover="mopen('m1')" onmouseout="mclosetime()" id="startpage">首页</a>
+
+                <div id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                    <!--		<a href="#">HTML DropDown</a>
+                            <a href="#">DHTML DropDown menu</a>
+                            <a href="#">JavaScript DropDown</a>
+                            <a href="#">DropDown Menu</a>
+                            <a href="#">CSS DropDown</a>-->
+                </div>
+            </li>
+
+            <li><a href="#" onmouseover="mopen('m2')" onmouseout="mclosetime()">课题组仪器现状</a>
+
+                <div id="m2" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                    <a href="device" id="device">实验室设备</a>
+                    <a href="instruction" id="notice">使用注意事项</a>
+                </div>
+            </li>
+            <li><a href="graduate" onmouseover="mopen('m3')" onmouseout="mclosetime()" id="graduates">历届毕业生专栏</a>
+
+                <div id="m3" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                    <!--<a href="#">Download Help File</a>
+                    <a href="#">Read online</a>-->
+                </div>
+            </li>
+            <li><a href="#" onmouseover="mopen('m4')" onmouseout="mclosetime()">资料下载</a>
+
+                <div id="m4" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                    <a href="#">资料一</a>
+                    <a href="#">资料二</a>
+                </div>
+            </li>
+            <li><a href="#" onmouseover="mopen('m5')" onmouseout="mclosetime()">合作链接</a>
+
+                <div id="m5" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                    <a href="#">皇家学院</a>
+                    <a href="#">xxxx</a>
+                </div>
+            </li>
+            <li><a href="#" onmouseover="mopen('m6')" onmouseout="mclosetime()">联系我们</a>
+
+                <div id="m6" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                    <a href="#">联系电话</a>
+                    <a href="#">电子邮件</a>
+                    <a href="http://www.cquenv.org/" target="_blank">业务网站</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+<div class="row">
+    <div id="header"><img src="{{ STATIC_URL }}images/main_b.jpg"/></div>
+</div>
+<div class="row pull-left">
+    <div class="pull-left span12">
+<h3>毕业生概况</h3>
+ </div>
+</div>
+<div class="row">
+<div id="myCarousel" class="carousel slide">
+  <ol class="carousel-indicators">
+      {% for graduate in graduatelist %}
+             <li data-target="#myCarousel" data-slide-to={{ graduate.name }}></li>
+      {% endfor %}
+  </ol>
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+
+
+       {% for graduate in graduatelist %}
+       <div class="item">
+       <div class="span3">
+           <span class="photo">
+               <img class="personpic"  src="{{ MEDIA_URL }}{{ graduate.photo }}"/>
+           </span>
+       </div>
+       <div class="span6 pull-left">
+           <p>工作单位：{{ graduate.name }}</p>
+           <p>职位：{{ graduate.position }}</p>
+           <p>单位地址：{{ graduate.address }}</p>
+           <p>电话号码：{{ graduate.telnumber }} </p>
+           <p>QQ：{{ graduate.qqnumber }}</p>
+           <p>邮箱：{{ graduate.email }}</p>
+       </div>
+       </div>
+
+       {% endfor %}
+  </div>
+  <!-- Carousel nav -->
+  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
+</div>
+<script type="text/javascript">
+    $(function() {
+        $('#myCarousel').carousel({interval: 2000});
+        $('#myCarousel').on('slid', function() {
+            var to_slide = $('.carousel-item.active').attr('data-slide-no');
+            $('.myCarousel-target.active').removeClass('active');
+            $('.carousel-indicators [data-slide-to=' + to_slide + ']').addClass('active');
+        });
+        $('.myCarousel-target').on('click', function() {
+            $('#myCarousel').carousel(parseInt($(this).attr('data-slide-to')));
+            $('.myCarousel-target.active').removeClass('active');
+            $(this).addClass('active');
+        });
+    });
+</script>
+   {% if graduatelist %}
+
+
+  {% else %}
+       <div class="row">
+       <div class="span3 pull-left">
+           <span class="photo">
+           <img class="personpic"  src="{{ MEDIA_URL }}images/graduates/150x200/pic1.jpg"  />
+           </span>
+       </div>
+       <div class="span6 pull-left"><p>工作单位：重庆忠庆环境工程咨询服务有限公司</p>
+<p>
+职位：副总</p>
+<p>单位地址：重庆袁家岗中新城上城6栋10-8</p>
+<p>
+电话号码:13594066326 </p><p>QQ：35630846</p><p>
+邮箱：ysb3333@163.com</p>
+       </div>
+       </div>
+       <div class="row">
+       <div class="span3"><img class="personpic"  src="{{ MEDIA_URL }}images/graduates/150x200/pic2.jpg"/></div>
+       <div class="span6 pull-left">
+           <p>工作单位：核工业西南勘察设计研究院  部门：市政院</p>
+           <p>职位：  给排水设计</p>
+           <p>单位地址：成都市二环路东四段298号</p>
+           <p>电话号码：13541095549 </p>
+           <p>QQ：84001597</p>
+           <p>邮箱：84001597@qq.com</p>
+       </div>
+       </div>
+       <div class="row">
+       <div class="span3"><img class="personpic"  src="{{ MEDIA_URL }}images/graduates/150x200/pic3.jpg"/></div>
+       <div class="span6">
+           <p>工作单位：重庆文理学院  部门：人事处</p>
+           <p>职位：教授/副处长</p>
+           <p>单位地址：重庆市永川区红河大道319号</p>
+           <p>电话号码：023-49891712 </p>
+           <p>QQ：316329503</p>
+           <p>邮箱：xinghu2200@163.com</p>
+       </div>
+       </div>
+       <div class="row">
+       <div class="span3"><img class="personpic"  src="{{ MEDIA_URL }}images/graduates/150x200/pic4.jpg"  /></div>
+       <div class="span6">
+       <p>工作单位：重庆市大渡口区环保局  部门：环境监测站</p>
+       <p>职位：高级工程师</p>
+       <p>单位地址：重庆市大渡口区文体路122号</p>
+       <p>电话号码：68082850 </p><p>QQ：7691003</p>
+       <p>邮箱：xingxingrelei@126.com</p>
+       </div>
+       </div>
+
+       <div class="row">
+       <div class="span3"><img class="personpic"  src="{{ MEDIA_URL }}images/graduates/150x200/pic5.jpg"  /></div>
+       <div class="span6">
+           <p>工作单位：河南省城市规划院 部门：市政一所</p>
+           <p>职位：职员</p>
+<p>单位地址：郑州市惠济区开元路11号</p>
+<p>电话号码：18236903933 </p><p>QQ：375776637</p>
+<p>邮箱：wangxd86127@163.com</p>
+       </div>
+       </div>
+       <div class="row">
+       <div class="span3"><img class="personpic"  src="{{ MEDIA_URL }}images/graduates/150x200/pic6.jpg"  /></div>
+       <div class="span6">
+               <p>工作单位:中南市政  部门：设计五院</p>
+<p>
+职位:给排水工程师
+</p>
+<p>单位地址：武汉市解放公园路41号</p>
+<p>
+电话号码:18623197794 </p><p>QQ：17098675
+</p>
+<p>
+邮箱：hh17980@163.com
+</p>
+       </div>
+       </div>
+       <div class="row">
+       <div class="span3">
+           <span class="photo">
+           <img class="personpic"  src="{{ MEDIA_URL }}images/graduates/150x200/pic7.jpg"  />
+           </span>
+       </div>
+       <div class="span6">
+           <p>工作单位：招商局重庆交通科研设计院有限公司 部门：环境工程所
+           <p>职位： </p>
+           <p>单位地址：重庆市南岸区</p>
+           <p>电话号码：  </p>
+           <p>QQ：</p><p>
+邮箱：sweetiecl@163.com</p>
+       </div>
+       </div>
+       <div class="row">
+       <div class="span3">
+           <span class="photo">
+           <img class="personpic"  src="{{ MEDIA_URL }}images/graduates/150x200/pic8.jpg"/>
+           </span>
+       </div>
+
+       <div class="span6">
+           <p>工作单位：重庆市环境工程评估中心 部门：咨询一部</p>
+           <p>职位：技术员</p>
+           <p>单位地址：重庆市渝北区洪湖东路9号财富大厦8楼</p>
+           <p>电话号码：13527337109</p>
+           <p>QQ：653292681</p>
+           <p>邮箱：653292681@qq.com</p>
+       </div>
+       </div>
+
+
+<div class="row">
+<div class="span3"><img class="personpic"  src="{{ MEDIA_URL }}images/graduates/150x200/pic9.jpg"  /></div>
+<div class="span6">
+    <p>工作单位：中国科学院城市环境研究所   部门：技术中心</p>
+    <p>职位： 博士（在读）</p>
+    <p>单位地址：厦门</p>
+    <p>电话号码：15105969591</p>
+    <p>QQ：215928298@qq.com</p>
+    <p>邮箱：zhfan0616@163.com</p>
+</div>
+</div>
+<div class="row">
+<div class="span3"><img class="personpic"  src="{{ MEDIA_URL }}images/graduates/150x200/pic10.jpg"  /> </div>
+<div class="span6">
+    <p>工作单位：林同棪国际工程咨询（中国）有限公司  部门：道路一所</p>
+    <p>职位： 无 </p>
+    <p>单位地址：北部新区高新园芙蓉路6号</p>
+    <p>电话号码： 13996045338</p>
+    <p>QQ：403979470</p>
+    <p>邮箱：dpgeqian@163.com</p>
+</div>
+</div>
+
+<div class="row">
+<div class="span3"><img class="personpic"  src="{{ MEDIA_URL }}images/graduates/150x200/pic11.jpg"  /></div>
+<div class="span6">
+<p>工作单位：广东省工程技术研究所 部门：研发中心</p>
+<p>职位：无</p>
+<p>单位地址：广东省广州市白云区嘉禾嘉罗路218号</p>
+<p>电话号码：137 517 56407</p>
+<p>QQ：644303234</p>
+<p>邮箱：644303234@qq.com</p>
+</div>
+</div>
+<div class="row">
+<div class="span3"><img class="personpic"  src="{{ MEDIA_URL }}images/graduates/150x200/pic12.jpg"/></div>
+<div class="span6">
+    <p>
+工作单位：四川大一水务有限责任 部门：水质分析监测中心</p>
+<p>职位：主任助理</p>
+<p>单位地址：成都市高新西区西源大道3号</p>
+<p>
+电话号码：13881810302 </p>
+<p>QQ：50385004</p>
+<p>邮箱：qiaosc@163.com
+</p>
+</div>
+</div>
+<div class="row">
+<div class="span3">
+    <img class="personpic"  src="{{ MEDIA_URL }}images/graduates/150x200/pic13.jpg"/>
+</div>
+<div class="span6">
+ <p>
+工作单位:中国市政工程西南设计研究总院  部门：城市规划院</p>
+<p>职位：助理工程师</p>
+<p>单位地址：四川省成都市星辉中路13号</p>
+<p>电话号码：13568985175</p>
+<p>QQ：841927756</p>
+<p>邮箱：lynnsunil@163.com</p>
+</div>
+</div>
+<div class="row">
+<div class="span3"><img class="personpic"  src="{{ MEDIA_URL }}images/graduates/150x200/pic14.jpg" /></div>
+<div class="span6">
+ <p>工作单位：广东粤港供水有限公司    部门：水技术研发部</p>
+<p>职位：助理业务主任</p>
+<p>单位地址：深圳市沿河北路2022号</p>
+<p>
+电话号码：18688702170
+</p>
+<p>QQ：497579767</p>
+<p>邮箱：sure-1984@163.com</p>
+</div>
+</div>
+<div class="row">
+<div class="span3"><img class="personpic"  src="{{ MEDIA_URL }}images/graduates/150x200/pic15.jpg" /></div>
+<div class="span6">
+ <p>工作单位：四川建中建筑设计有限公司     部门：设计部</p>
+<p>职位：给排水设计员</p>
+<p>单位地址：成都市青羊区</p>
+<p>
+电话号码：18981875991</p>
+<p>QQ：335414658</p>
+<p>邮箱：335414658@qq.com</p>
+</div>
+</div>
+<div class="row">
+<div class="span3"><img class="personpic"  src="{{ MEDIA_URL }}images/graduates/150x200/pic16.jpg" /></div>
+<div class="span6">
+ <p>工作单位：浙江省城乡规划设计研究院   部门：市政所</p>
+<p>职位：给排水设计</p>
+<p>单位地址：杭州市西湖区保俶路238号</p>
+<p>电话号码：15967124432</p>
+<p>QQ：307255190</p>
+<p>邮箱：307255190@qq.com</p>
+</div>
+</div>
+<div class="row">
+<div class="span3"><img class="personpic"  src="{{ MEDIA_URL }}images/graduates/150x200/pic17.jpg" /></div>
+<div class="span6">
+<p>工作单位：国内贸易工程设计研究院    部门：民建所</p>
+<p>职位：无
+</p><p>单位地址：北京市丰台区右安门外大街99号</p>
+<p>电话号码：13621124762</p>
+<p>QQ：412788380</p>
+<p>邮箱：412788380@qq.com</p>
+</div>
+</div>
+<div class="row">
+<div class="span3"><img class="personpic"  src="{{ MEDIA_URL }}images/graduates/150x200/pic18.jpg"/></div>
+<div class="span6">
+<p>工作单位：云南省设计院    部门：市政分院</p>
+<p>职位：设计人员</p>
+<p>单位地址：昆明市广福路与拥金路交叉口</p>
+<p>
+电话号码：13629463919</p>
+<p>QQ：93441147</p>
+<p>邮箱：93441147@qq.co</p>
+</div>
+</div>
+<div class="row">
+<div class="span3"><img class="personpic"  src="{{ MEDIA_URL }}images/graduates/150x200/pic19.jpg" /></div>
+<div class="span6">
+<p>工作单位：中国民航机场建设集团西南分公司 部门：设计三所</p>
+<p>职位：工程师</p>
+<p>单位地址：成都 双流机场
+</p>
+<p>电话号码：15928691975</p>
+<p>QQ：190247080</p>
+<p>邮箱：190247080@qq.com</p>
+</div>
+</div>
+
+<div class="row">
+<div class="span3">
+ <img class="personpic"  src="{{ MEDIA_URL }}images/graduates/150x200/pic20.jpg" />
+</div>
+<div class="span6">
+<p>工作单位：中国建筑西南设计研究院有限公司 部门：机电三所</p>
+<p>职位： 给排水设计工程师</p>
+<p>单位地址：成都市天府大道866号（高新区金融城旁）</p>
+<p>电话号码：15928674702 </p>
+<p>QQ：34051925</p>
+<p>邮箱：34051925@qq.com</p>
+</div>
+</div>
+{% endif %}
+</div>
+
+      <div id="copyright"><a href="#" target="_blank">重庆大学</a> | <a href="#" target="_blank">城市环境学院</a> |  © Copyright Chongqing CQUENV All Rights Reserved
+      </div>
+</body>
+</html>

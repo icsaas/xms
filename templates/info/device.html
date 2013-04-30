@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>重庆大学城环学院</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="{{ STATIC_URL }}css/style_b.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}css/custom.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/custom.js"></script>
+</head>
+<body>
+<div id="container">
+<div class="row">
+<div id="nav">
+
+    <a href="http://cqu.edu.cn" id="logo"><img src="{{ STATIC_URL }}images/logo.png"/></a>
+
+    <div class="topnav" style="float: left">
+        <a href="http://cquenv.org/sitemap/"
+           style="background: url('{{ STATIC_URL }}images/dot1.gif') no-repeat left center;">网站地图</a>
+        <a href="http://cquenv.org/">城环学院课题组</a>
+        <a href="http://cqu.edu.cn/">重庆大学</a>
+
+        <div class="topnav_kuang">
+            <input type="text" class="text btn-small" value=" 请输入关键字">
+        </div>
+    </div>
+
+    <div class="navmenu">
+        <ul id="sddm">
+            <li>
+                <a href="/" onmouseover="mopen('m1')" onmouseout="mclosetime()" id="startpage">首页</a>
+
+                <div id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                    <!--		<a href="#">HTML DropDown</a>
+                            <a href="#">DHTML DropDown menu</a>
+                            <a href="#">JavaScript DropDown</a>
+                            <a href="#">DropDown Menu</a>
+                            <a href="#">CSS DropDown</a>-->
+                </div>
+            </li>
+
+            <li><a href="#" onmouseover="mopen('m2')" onmouseout="mclosetime()">课题组仪器现状</a>
+
+                <div id="m2" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                    <a href="device" id="device">实验室设备</a>
+                    <a href="instruction" id="notice">使用注意事项</a>
+                </div>
+            </li>
+            <li><a href="graduate" onmouseover="mopen('m3')" onmouseout="mclosetime()" id="graduates">历届毕业生专栏</a>
+
+                <div id="m3" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                    <!--<a href="#">Download Help File</a>
+                    <a href="#">Read online</a>-->
+                </div>
+            </li>
+            <li><a href="#" onmouseover="mopen('m4')" onmouseout="mclosetime()">资料下载</a>
+
+                <div id="m4" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                    <a href="#">资料一</a>
+                    <a href="#">资料二</a>
+                </div>
+            </li>
+            <li><a href="#" onmouseover="mopen('m5')" onmouseout="mclosetime()">合作链接</a>
+
+                <div id="m5" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                    <a href="#">皇家学院</a>
+                    <a href="#">xxxx</a>
+                </div>
+            </li>
+            <li><a href="#" onmouseover="mopen('m6')" onmouseout="mclosetime()">联系我们</a>
+
+                <div id="m6" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                    <a href="#">联系电话</a>
+                    <a href="#">电子邮件</a>
+                    <a href="http://www.cquenv.org/" target="_blank">业务网站</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+<div class="row">
+    <div id="header"><img src="{{ STATIC_URL }}images/main_b.jpg"/></div>
+</div>
+<h3>实验室设备</h3>
+{% if devicelist %}
+   {% for device in devicelist %}
+    <div class="pull-left">
+    <span class="devicephoto">
+        <img src="{{ MEDIA_URL }}{{ device.photo }}">
+    </span>
+    <div class="span7">
+    <p>
+    {{ device.name }}<br/>
+    {{ device.detail }}
+    </p>
+    </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="pull-left">
+    <span class="devicephoto pull-left">
+    <img src="{{ MEDIA_URL }}images/devices/200x200/pic1.jpg" alt="lorem ipsum" width="180" height="180">
+    </span>
+    <div class="span7">
+       <div class="row">傅里叶变换红外光谱仪</div>
+       <div class="row">型号：IRPvestige-21 厂家：日本岛津</div>
+       <div class="row">
+           <p>红外分光光度法是利用物质对红外光区电磁辐射的选择性吸收特性来进行结构分析、
+                        定性分析和定量分析的一种分析方法。傅里叶变换红外光谱仪简称为傅里叶红外光谱仪，
+                        它是基于对干涉后的红外光进行傅里叶变换的原理而开发的红外光谱仪，主要由红外光源、干涉仪、样品室、检测器等组成，可以对固、液、气样品进行定性、定量分析和结构确定。傅里叶红外光谱仪广泛应用于医药化工、地矿、石油、煤炭、环保、海关、宝石鉴定、刑侦鉴定等领域。
+           </p>
+       </div>
+    </div>
+    </div>
+
+    <div class="pull-left">
+    <span class="devicephoto">
+        <img src="{{ MEDIA_URL }}images/devices/200x200/pic2.jpg" alt="lorem ipsum" width="180" height="180">
+    </span>
+    <div class="span7">
+    <div class="row">荧光分光光度计</div>
+    <div class="row">型号：F-7000 厂家：HITACHI</div>
+    <div class="row">
+        <p>
+    荧光分光光度计是用于扫描荧光标记物所发出的荧光光谱的一种仪器，主要由光源、激发单色器、发射单色器、样品室、检测器等组成，可用于液体、固体样品的光谱扫描。对经光源激发后产生荧光的物质或经化学处理后产生荧光的物质的定性和定量分析分析，可应用于生物化学、生物医学、环境化工等部门。
+        </p>
+    </div>
+    </div>
+    </div>
+    <div class="pull-left">
+    <span class="devicephoto">
+        <img src="{{ MEDIA_URL }}images/devices/200x200/pic3.jpg" alt="lorem ipsum" width="180" height="180">
+    </span>
+    <div class="span7">
+    <div class="row">多参数水质分析仪</div>
+    <div class="row">型号:YSI6600 厂家：美国YSI</div>
+    <div class="row">
+        <p>
+        主要用于水质的现场监测，定量描述天然水体中的各种水质指标。系统包括多参数水质监测仪和BOD测试仪，可测溶解氧、 pH/ORP、盐度、温度、电导率、氨氮、硝氮、叶绿素、蓝绿藻、BOD等指标。
+        </p>
+    </div>
+    </div>
+    </div>
+
+    <div class="pull-left">
+   <span class="devicephoto">
+       <img src="{{ MEDIA_URL }}images/devices/200x200/pic4.jpg" alt="lorem ipsum"   width="180" height="180">
+   </span>
+   <div class="span7">
+   <div class="row">紫外-可见分光光度计</div>
+   <div class="row">型号：U-3010 厂家：HITACHI</div>　　
+   <div class="row">
+    <p>
+    紫外-可见分光光度计是基于物质对波长范围在紫外、可见辐射区的吸收的分光光度计，可用于液体和固体的定性分析、定量分析和结构测定。采用微聚焦光路和池长自动转换功能结合，可以测量极微量样品。仪器的杂散光极小，即使在高浓度样品测定时，仍有可靠的定量准确度。
+                    </p>
+    </div>
+    </div>
+    </div>
+
+    <div class="pull-left">
+    <span class="devicephoto">
+        <img src="{{ MEDIA_URL }}images/devices/200x200/pic5.jpg" alt="lorem ipsum" width="180" height="180">
+    </span>
+    <div class="span7">
+      <div class="row">激光粒度分布仪</div>
+      <div class="row">型号：BT-9300HT 厂家：丹东百特仪器有限公司</div>
+      <div class="row">
+      <p>
+      激光粒度分布仪是采用激光做光源，利用光的衍射和散射的光能的空间分布只与粒径有关的关系而研制的仪器,用来测定物质的粒度分度。仪器具有测量范围广、分辨能力强、自动化程度高、操作方便、测试速度快、测试结果准确可靠重复性好等特点。
+      </p>
+      </div>
+    </div>
+    </div>
+    {% endif %}
+        </div>
+    </div>
+</div>
+
+<div id="copyright"><a href="#" target="_blank">重庆大学</a> | <a href="#" target="_blank">城市环境学院</a> | © Copyright
+    Chongqing CQUENV All Rights Reserved
+</div>
+</body>
+</html>

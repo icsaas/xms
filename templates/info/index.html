@@ -1,0 +1,597 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>重庆大学城环学院</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="{{ STATIC_URL }}css/style_b.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}css/custom.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/custom.js"></script>
+</head>
+<body>
+<div id="container">
+<div class="row">
+    <div id="nav">
+        <a href="http://cqu.edu.cn" id="logo"><img src="{{ STATIC_URL }}images/logo.png"/></a>
+
+        <div class="topnav" style="float: left">
+            <a href="http://cquenv.org/sitemap/"
+               style="background: url('{{ STATIC_URL }}images/dot1.gif') no-repeat left center;">网站地图</a>
+            <a href="http://cquenv.org/">城环学院课题组</a>
+            <a href="http://cqu.edu.cn/">重庆大学</a>
+
+            <div class="topnav_kuang">
+                <input type="text" class="text btn-small" value=" 请输入关键字">
+            </div>
+        </div>
+
+        <div class="navmenu">
+            <ul id="sddm">
+                <li>
+                    <a href="/" onmouseover="mopen('m1')" onmouseout="mclosetime()" id="startpage">首页</a>
+
+                    <div id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                        <!--		<a href="#">HTML DropDown</a>
+                                <a href="#">DHTML DropDown menu</a>
+                                <a href="#">JavaScript DropDown</a>
+                                <a href="#">DropDown Menu</a>
+                                <a href="#">CSS DropDown</a>-->
+                    </div>
+                </li>
+
+                <li><a href="#" onmouseover="mopen('m2')" onmouseout="mclosetime()">课题组仪器现状</a>
+
+                    <div id="m2" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                        <a href="device" id="device">实验室设备</a>
+                        <a href="instruction" id="notice">使用注意事项</a>
+                    </div>
+                </li>
+                <li><a href="graduate" onmouseover="mopen('m3')" onmouseout="mclosetime()" id="graduates">历届毕业生专栏</a>
+
+                    <div id="m3" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                        <!--<a href="#">Download Help File</a>
+                        <a href="#">Read online</a>-->
+                    </div>
+                </li>
+                <li><a href="#" onmouseover="mopen('m4')" onmouseout="mclosetime()">资料下载</a>
+
+                    <div id="m4" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                        <a href="#">资料一</a>
+                        <a href="#">资料二</a>
+                    </div>
+                </li>
+                <li><a href="#" onmouseover="mopen('m5')" onmouseout="mclosetime()">合作链接</a>
+
+                    <div id="m5" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                        <a href="#">皇家学院</a>
+                        <a href="#">xxxx</a>
+                    </div>
+                </li>
+                <li><a href="#" onmouseover="mopen('m6')" onmouseout="mclosetime()">联系我们</a>
+
+                    <div id="m6" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                        <a href="#">联系电话</a>
+                        <a href="#">电子邮件</a>
+                        <a href="http://www.cquenv.org/" target="_blank">业务网站</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div>
+        <div id="header"><img src="{{ STATIC_URL }}images/main_b.jpg"/></div>
+    </div>
+</div>
+
+<div class="row pull-left">
+{% if directionlist %}
+    <div class=" pull-left">
+        <span class="tab">研究方向</span>
+
+        <div class="well">
+            <ul id="sidenav" class="nav nav-pills nav-stacked">
+                <li class="activte">
+                    <a href="#leftContent" data-toggle="tab">课题组简介</a></li>
+                {% for direction in directionlist %}
+                    <li class=""><a href="#{{ direction.slug }}" data-toggle="tab">{{ direction.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="span7 pull-right">
+    <div class="tab-content">
+    <div class="tab-pane active" id="leftContent">
+            <div class="textboxtop">课题组简介</div>
+            {% if  leaderlist %}
+                {% for leader in leaderlist %}
+                    <div class="textbox">
+                        <span class="photo">
+            <img src="{{ MEDIA_URL }}{{ leader.photo }}" alt="lorem ipsum"
+                 width="120" height="140"></span>
+
+                        <p>
+                            <b>{{ leader.name }}</b><br/>
+                            {{ leader.position }}<br/>
+                            {{ leader.direction }}<br/>
+                            办公室：{{ leader.office }}<br/>
+                            电话：{{ leader.telnumber }}<br/>
+                            电子邮箱：{{ leader.email }} <br/>
+                        </p>
+
+                        <p>
+                            <b>教育和工作经历</b><br/>
+                            {{ leader.exprience }}
+                        </p>
+
+                        <p>
+                            <b>学术兼职</b><br/>
+                            {{ leader.otherpositon }}
+                        </p>
+
+                        <p>
+                            <b>获奖及荣誉</b><br/>
+                            {{ leader.honor }}
+                        </p>
+
+                        <p>
+                            <b>研究资助</b><br/>
+                            {{ leader.money }}
+                        </p>
+
+                        <p>
+                            <b>研究领域</b><br/>
+                            {{ leader.domain }}
+                        </p>
+
+                        <p>
+                            <b>主要代表性论文</b><br/>
+                            {{ leader.thesis }}
+                        </p>
+                    </div>
+                    <div class="textboxbottom"><a href="#"></a></div>
+                {% endfor %}
+            {% else %}
+                <p>请边界课题简介信息</p>
+            {% endif %}
+
+
+        <div class="textbox">
+            <p>
+                <b>研究组人员概况</b><br/>
+                {% if memberlist %}
+                    {{ memberlist }}
+                    {% for member in memberlist %}
+                        {{ member }}
+                    {% endfor %}
+                {% else %}
+                    <b>在读研究生</b><br/>
+                    博士生：晏鹏、陈晴空、关伟、何莉、金展、张千、范建平、赵艮<br/>
+                    硕士生：陈思、刘娜、何小玲、张琨、周卫威、李琪、裴玲、刘亭役、姜宁、颜达超、来铭笙、颜海波<br/>
+                {% endif %}
+            </p>
+        </div>
+        </div>
+    {% for direction in directionlist %}
+        <div class="tab-pane" id="{{ direction.slug }}">
+        <div class="textboxtop" id="{{ direction.slug }}">研究课题:{{ direction.name }}</div>
+        <div class="textbox">
+            <p><b>主要内容</b>
+                {{ direction.detail }}
+            </p>
+
+            <p><b>优势和特色/发表论文</b>
+                {{ direction.features }}
+            </p>
+        </div>
+        <div class="textboxbottom"><a href="#"> </a></div>
+        </div>
+    {% endfor %}
+
+    </div>
+    </div>
+{% else %}
+    <div class=" pull-left">
+        <span class="tab">研究方向</span>
+
+        <div class="well">
+            <ul id="sidenav" class="nav nav-pills nav-stacked">
+                <li class="activte">
+                    <a href="#leftContent" data-toggle="tab">课题组简介</a></li>
+                <li class=""><a href="#envmaterial" data-toggle="tab"><strong>环境功能材料</strong></a></li>
+                <li class=""><a href="#dirtywater" data-toggle="tab"><strong>城市污水厂嵌入式旁路污泥减量技术研究</strong></a></li>
+                <li class=""><a href="#SO4xxx"
+                                data-toggle="tab"><strong>基于SO4•-的类Fenton-TiO2光催化协同特性水处理材料的制备及协同机理研究</strong></a>
+                </li>
+                <li class=""><a href="#oxygen" data-toggle="tab"><strong>新型固体碳源的制备及其在脱氮中的应用</strong></a></li>
+                <li class=""><a href="#miniwater" data-toggle="tab"><strong>低碳源污水同步脱氮除磷系统研究</strong></a></li>
+                <li class=""><a href="#purewater" data-toggle="tab"><strong>城镇污水处理系统泥沙淤积机制研究</strong></a></li>
+                <li class=""><a href="#sanxiakuqu" data-toggle="tab"><strong>三峡库区</strong></a></li>
+                <li class=""><a href="#duokong" data-toggle="tab"><strong>多孔水化硅酸钙磷回收材料的制备与应用研究</strong></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="span7 pull-right">
+    <div class="tab-content">
+    <div class="tab-pane active" id="leftContent">
+    <div class="textboxtop">课题组简介</div>
+    {% if  leaderlist %}
+        {% for leader in leaderlist %}
+            <div class="textbox"><span class="photo">
+            <img src="{{ MEDIA_URL }}{{ leader.photo }}" alt="lorem ipsum"
+                 width="120" height="140"></span>
+
+                <p>
+                    <b>{{ leader.name }}</b><br/>
+                    {{ leader.position }}<br/>
+                    {{ leader.direction }}<br/>
+                    办公室：{{ leader.office }}<br/>
+                    电话：{{ leader.telnumber }}<br/>
+                    电子邮箱：{{ leader.email }} <br/>
+                </p>
+
+                <p>
+                    <b>教育和工作经历</b><br/>
+                    {{ leader.exprience }}
+                </p>
+
+                <p>
+                    <b>学术兼职</b><br/>
+                    {{ leader.otherpositon }}
+                </p>
+
+                <p>
+                    <b>获奖及荣誉</b><br/>
+                    {{ leader.honor }}
+                </p>
+
+                <p>
+                    <b>研究资助</b><br/>
+                    {{ leader.money }}
+                </p>
+
+                <p>
+                    <b>研究领域</b><br/>
+                    {{ leader.domain }}
+                </p>
+
+                <p>
+                    <b>主要代表性论文</b><br/>
+                    {{ leader.thesis }}
+                </p>
+            </div>
+            <div class="textboxbottom"><a href="#"></a></div>
+        {% endfor %}
+    {% else %}
+        <div class="textbox">
+            <span class="photo">
+        <img src="{{ MEDIA_URL }}images/teachers/profile1.jpg" alt="lorem ipsum"></span>
+
+            <p>
+                <b>吉芳英教授</b><br/>
+                博士生导师
+                城市建设与环境工程学院副院长<br/>
+                环境工程学、水污染防治工程、
+                环境质量检测与评价专业<br/>
+                办公室：重庆大学B区第3教学楼3楼<br/>
+                电话：023-65120518<br/>
+                电子邮箱：jfy@cqu.edu.cn <br/>
+            </p>
+
+            <p>
+                <b>教育和工作经历</b><br/>
+                2009年 德国 德国尤里希研究中心 短期合作研究<br/>
+                1999年-2004年 重庆 重庆大学 环境工程专业 工学博士学位<br/>
+                1985年-1988年 重庆 西南师范大学 环境化学专业 理学硕士学位<br/>
+                1981年-1985年 重庆 西南师范学院 化学专业 理学学士学位
+            </p>
+
+            <p>
+                <b>学术兼职</b><br/>
+                1.重庆市环境科学学会理事<br/>
+                2.重庆市光谱学会理事<br/>
+                3.重庆市生态学会理事<br/>
+                4.国家注册环境影响评价工程师
+            </p>
+
+            <p>
+                <b>获奖及荣誉</b><br/>
+                ① 2000年度重庆市科技进步三等奖：组合式间歇曝气系统（PIAS）处理城市污水的实验研究，排名第3<br/>
+                ② 2000年度重庆市优秀教学成果一等奖：环境工程专业人才培养可持续发展模式研究，排名第2<br/>
+                ③ 2009年度重庆市科技进步二等奖：小城镇污水处理经济使用技术体系研究与应用，排名第8<br/>
+            </p>
+
+            <p>
+                <b>研究资助</b><br/>
+                1、国家自然科学基金项目“污水生物反硝化同时除磷机理及其处理系统研究” <br/>
+                2、重庆市科委和建设部项目“单池生物系统活性污泥外循环高效除磷试验研究”<br/>
+                3、国家十五攻关项目“简易高效活性污泥复合系统除磷脱氮技术研究与示范”（第二负责人）<br/>
+                4、企业委托“化工废水处理技术研究”<br/>
+                5、建设部科技司“间歇曝气系统及其逸出气体净化工艺与装置研究”<br/>
+                6、重庆市科技攻关项目“立式活塞流厌氧好氧污水处理系统工艺装置研究”<br/>
+                7、重庆市建委“城市污水复合生物除磷技术研究”<br/>
+                8、荷兰政府赠款项目(2003- MOC-NGGP- 03-12)<br/>
+                9、教育部博士点基金（20070611009）<br/>
+                10、教育部科技创新工程重大项目培育资金项目（708071）<br/>
+                11、国家重大水专项（2009ZX07315-002-02）<br/>
+                12、科技部国际科技合作项目（2007DFA90660）<br/>
+            </p>
+
+            <p>
+                <b>研究领域</b><br/>
+                主要从事水污染控制理论与技术、环境规划与管理、环境质量评价等方向的研究，对高效低耗城市污水生物处理及脱氮除磷技术，难降解工业废水的生化及物化处理理论与技术有较深入的研究。研究大多数针对三峡库区污水处理厂的特性，就如何提高氮磷营养物质的去除能力而进行的新技术研究。伴随污泥问题的日渐突出，近年的研究重点逐渐转向污水处理过程污泥减量机理及技术研究。
+            </p>
+
+            <p>
+                <b>主要代表性论文</b><br/>
+                [1] 吉方英,黎司等. 三峡库区消落带腐殖酸的表面增强拉曼光谱. 环境化学,2012年, 30(4): 778-785<br/>
+                [2] 吉芳英,晏鹏等,山地城市排水管网特细颗粒物特性及变化规律. 环境科学研究,2012年, 25 (3) :322-327<br/>
+                [3] 吉芳英,何莉等. 不同制备方法对Fe3+/TiO2光催化活性的影响. 重庆大学学报（自然科学版）,2012年,35(3):127-132<br/>
+                [4] 吉芳英,王晓东等. 高铁酸价氧化系统中芳烃类物质转化特性. 水处理技术,2012年,38(10):47-48,53<br/>
+                [5] 吉芳英,郭倩等,低碳源污水的强化反硝化除磷研究. 中国给水排水,2012年，28(13):7-10<br/>
+                [6] 曹琳,吉方英等. 三峡库区消落区表层曾既无磷吸附特征. 水科学进展,2011年, 22(1):89-96<br/>
+                [7] 吉方英,赵易等. 环流式活性污泥/生物膜组合工艺的脱氮除磷性能. 中国给水排水,2011年,<br/>
+                [8] 黎司,吉芳英等. 乐果与氧化乐果在金/银核-壳粒子上的SERS研究. 化学学报,2010年,68(16):1616-1622<br/>
+                [9] 吉芳英,黎司等. 氧化乐果的振动光谱及其表面增强拉曼散射研究. 分析化学,2010年,38(8):1127-1132<br/>
+                [10] 吉芳英,胥驰等. 曝气量对侧流除磷分段进水SBR脱氮除磷的影响. 中国给水排水,1010年,26(19):5-9<br/>
+                [11] 吉芳英,杨勇光等. 碳源种类对反硝化除磷系统运行状态的影响. 中国给水排水,1010年,26(15):<br/>
+                [12] 吉芳英,黎司等. 重庆主城区两江溶解有机质的荧光光谱特征. 光谱学与光谱分析,2010年,30(1):(SCI E)<br/>
+                [13] 吉芳英,习劲等. 剩余污泥发酵产酸特征及基质释放规律研究. 环境工程学报,2010年,4(2):85-89<br/>
+                [14] 吉芳英,王图锦等. 三峡库区消落区水体-沉积物重金属迁移转化特征. 环境科学,2009年,30(12):3481-3487<br/>
+                [15]吉芳英、谢志刚等,柑橘皮中孔活性炭的制备及性能表征. 化工学报, 2009年, 60 (7) :1680-1686 <br/>
+            </p>
+        </div>
+
+        <div class="textbox">
+        <span class="photo">
+        <img src="{{ MEDIA_URL }}images/teachers/profile2.jpg" alt="lorem ipsum">
+        </span>
+
+            <p>
+                <b>徐璇副教授</b><br/>
+                环境科学与工程、水污染防治工程专业<br/>
+                办公室: 重庆大学B区第3教学楼1楼<br/>
+                联系电话：13637932203<br/>
+                电子邮箱：xuxuan@cqu.edu.cn<br/>
+            </p>
+
+            <p>
+                <b>教育及进修经历</b><br/>
+                2011年-至今 重庆大学 城市建设与环境工程学院 副教授 硕士生导师<br/>
+                2010年-2011年 重庆大学 城市建设与环境工程学院 讲师<br/>
+                2005年-2010年 重庆 重庆大学 环境科学与工程专业 工学博士学位<br/>
+                2001年-2005年 重庆 重庆大学 环境工程专业 工学学士学位
+            </p>
+
+            <p>
+                <b>主要研究方向</b>
+                水污染控制理论与技术，环境功能材料
+            </p>
+
+            <p>
+                <b>主持或主研的科学研究项目：</b><br/>
+                [1] 基于太阳光催化的无碳同步硝化反硝化生物脱氮技术（项目批准号：51108483），国家自然科学基金青年基金，负责人，25万元，2012.1-2014.12.<br/>
+                [2] 无碳源条件下光催化-微生物系统脱氮机理研究（项目批准号：CSTCjjA20002)，重庆市自然科学基金，负责人，5万元，2011.8-2014.7.<br/>
+                [3] 基于太阳光催化的自清洁墙体材料研究（项目批准号：城科字2011第2-36号）重庆市建设科技计划项目，负责人，5万元，2011.8-2012.4.<br/>
+                [4] 高铁酸盐缓释剂研制及在给水处理中的应用(项目批准号：CDJRC10210008)，重庆大学高层次人才科研启动基金项目，负责人，5万元，2011.1-2013.12.<br/>
+                [5] 高铁酸盐缓释剂的研制及净水效果研究(项目批准号：CDJZR11210009)，中央高校基本科研业务费项目，负责人，5万元，2011.1-2013.12.<br/>
+                [6] 改善高浓度难降解有机废水可生化性的纳米TiO2光催化氧化过程及污水处理系统研究, 教育部博士点基金项目，主研.<br/>
+                [7] 微污染水源原水的高效低耗处理技术研究，教育部科技创新重大项目培育项目，主研.<br/>
+            </p>
+
+            <p>
+                <b>主要学术论文与代表作：</b><br/>
+                [1] Xuan Xu, Fangying Ji, Zihong Fan, Li He, Xuebin Hu, Zhang Kun. Dyestuff Wastewater Treatment by
+                combined SDS-CuO/TiO2 Photocatalysis and Sequencing Batch Reactor[J]. Journal of Cent. South Univ.
+                Technol, 2012, 19(6):1685-1692.（SCI）<br/>
+                [2] Xuan Xu, Fangying Ji, Zihong Fan, Li He. Degradation of glyphosate in soil photocatalyzed by
+                Fe3O4/SiO2/TiO2 under solar light[J]. International Journal of Environmental Research and Public Health,
+                2011, 8(4): 1258-1270.（SCI）<br/>
+                [3] XU Xuan, JI Fang-ying, QIU Yan. Degradation mechanism of methylene blue diluted in water using
+                CuO/TiO2 photocatalysts[J]. Journal of Cent. South Univ. Technol, 2007, 14(suppl 3): 468-471.(SCI)<br/>
+                [4] 徐璇, 吉芳英, 范子红. 十二烷基硫酸钠对CuO/TiO2催化剂表面改性的影响[J]. 四川大学学报(工程科学版), 2011, 43(1):195-200. （EI）<br/>
+                [5] 徐璇, 吉芳英, 何莉. 表面活性剂对CuO/TiO2结构和光催化活性的影响[J].土木建筑与环境工程, 2011,33(1): 129-134. （EI）<br/>
+                [6] 徐璇, 吉芳英, 范子红. 螺旋升流塔式光催化反应器的设计[J]. 中国给水排水,2009,25(23):79-81.<br/>
+                [7] 胡学斌, 徐璇, 吉芳英, 范子红. 疏水性光催化剂的制备及其催化动力学[J]. 无机材料学报, 2009, 24(6):1115-1120.(SCI检索)<br/>
+                [8] 吉芳英, 徐璇, 范子红, 邱雁, 袁云松. CuO/TiO2-H2O2光催化体系中亚甲基蓝脱色机理[J]. 重庆大学学报(自然科学版), 2009, 32(6):
+                705-710.(EI检索)<br/>
+                [9] 吉芳英, 徐璇, 范子红. 疏水性可见光响应型纳米CuO/TiO2催化降解高浓度硝基苯[J]. 化工学报, 2009, 60(7): 1680-1686.(EI检索)<br/>
+            </p>
+
+            <p>
+                <b>参与的国际与国内会议：</b><br/>
+                [1] IWA World Water Congress & Exhibition 2012, Busan, Korea, Oral presentation: Biodegradability
+                Improvement of Textile Wastewater Treated by SDS-CuO/TiO2 under Solar Light, 16-21 September 2012.<br/>
+            </p>
+        </div>
+    {% endif %}
+    <div class="textboxbottom"><a href="#"> </a>
+    </div>
+
+    <div class="textbox">
+        <p>
+            <b>研究组人员概况</b><br/>
+            {% if memberlist %}
+                {{ memberlist }}
+                {% for member in memberlist %}
+                    {{ member }}
+                {% endfor %}
+            {% else %}
+                <b>在读研究生</b><br/>
+                博士生：晏鹏、陈晴空、关伟、何莉、金展、张千、范建平、赵艮<br/>
+                硕士生：陈思、刘娜、何小玲、张琨、周卫威、李琪、裴玲、刘亭役、姜宁、颜达超、来铭笙、颜海波<br/>
+            {% endif %}
+        </p>
+    </div>
+    </div>
+
+
+    <div class="tab-pane" id="envmaterial">
+        <div class="textboxtop" id="envmatorial">研究课题：环境功能材料
+        </div>
+        <div class="textbox">
+            <p><b>课题成员 徐璇 周碧 皱秋林</b><br/>
+                　　　环境问题的复杂性日益加剧，采用传统污染控制技术的治理难度和治理成本不断加大，开发能够应对新型污染物、适宜多种环境条件的环境功能材料已成为国内外的研究热点。本方向主要涵盖光催化材料、吸附材料等多种类型环境功能材料的研发、应用。
+                　　　研发可在太阳照射条件下处理难降解有机废水的光催化材料，并研究与之匹配的污水处理技术；
+                　　　研发可高效去除室内空气污染物的光催化及吸附材料；
+                　　　利用污水厂污泥为原料，研发可用于重金属污染物去除的吸附材料，并开发污水处理技术；
+                　　　研发城市污水磷回收材料及反应器；
+                　　　将微生物燃料电池技术与光催化技术结合，研究适宜于低碳源城市污水处理的新型光催化剂及反应器。</p>
+
+            <p><b>优势与特色：</b><br/>
+                　　　在国家重大科技专项“水体污染控制与治理”、国家自然科学基金项目、重庆市科技计划项目等支持下开展了多项研究工作，已获得多项发明专利，并已有部分专利开展工程实施。</p>
+        </div>
+        <div class="textboxbottom"><a href="#"> </a></div>
+
+        <!-- /.tabbable -->
+    </div>
+    <!-- .tabs-basic -->
+    <div class="tab-pane" id="dirtywater">
+        <div class="textboxtop" id="leftmenu2">研究课题：城市污水厂嵌入式旁路污泥减量技术研究
+        </div>
+        <div class="textbox">
+            <p><b>课题成员 晏鹏、范剑平</b><br/>
+                　　　研究与库区主要城市污水处理工艺相匹配的、集污泥减量和生物除磷脱氮功能、污泥淤砂分离于一体的嵌入剩余污泥管线的旁路污泥减量及污泥循环利用技术，通过对旁路污泥减量池溶胞和能量解偶联技术的对比研究，筛选与库区污水厂匹配的旁路污泥减量模块技术。
+                　　　中试研究，规模为10m3/d。</p>
+
+            <p><b>发表论文</b><br/>
+                　　吉芳英，晏鹏． 山地城市排水管网特细颗粒物特性及变化规律［J］． 环境科学研究，2012,25( 3) : 322-327．</p>
+
+            <p><b>专利</b><br/>
+
+                吉芳英，何强，晏鹏，徐璇，宗述安，范剑平，陆磊，帅文林。旁路污泥减量、淤沙分离及脱氮除磷污水处理系统及方法；公开号 CN102241462A
+
+                吉芳英，胡学斌，宗述安，徐璇，晏鹏，何小玲，陆磊，张轩。一种适用于去除污水处理厂活性污泥中淤沙的分离器；公开号CN102302974A
+            </p>
+
+        </div>
+        <div class="textboxbottom"><a href="#"> </a></div>
+
+        <!-- /.tabbable -->
+    </div>
+    <div class="tab-pane" id="SO4xxx">
+        <div class="textboxtop" id="leftmenu3">
+            研究课题:基于SO4•-的类Fenton-TiO2光催化协同特性水处理材料的制备及协同机理研究
+        </div>
+        <div class="textbox">
+            <p><b>研究人员：陈晴空</b><br/>
+                　　通过制备一种具有协同作用的新型催化剂，有效结合高级氧化技术（AOTs）中Fenton氧化和TiO2光催化技术的优势。在基于SO4•-的类Fenton-TiO2光催化复合系统中利用强氧化性SO4•-和•OH降解水体中的难降解有机物。本课题主要内容主要有催化剂的构成和制备方法和类Fenton反应和TiO2光催化的协同方式和机理。本研究将探索一条将Fenton氧化法和TiO2光催化技术结合的有效途径。
+                论文处于在投阶段，故不列出；已获批一项研究生科技创新基金自主研究项目.
+
+            </p></div>
+        <div class="textboxbottom"><a href="#"> </a></div>
+
+        <!-- /.tabbable -->
+    </div>
+    <div class="tab-pane" id="oxygen">
+        <div class="textboxtop" id="leftmenu4">研究课题:新型固体碳源的制备及其在脱氮中的应用
+        </div>
+        <div class="textbox">
+            <p><b>课题成员： 张千 陈思</b><br/>
+                　　　研究与库区主要城市污水处理工艺相匹配的、集污泥减量和生物除磷脱氮功能、污泥淤砂分离于一体的嵌入剩余污泥管线的旁路污泥减量及污泥循环利用技术，通过对旁路污泥减量池溶胞和能量解偶联技术的对比研究，筛选与库区污水厂匹配的旁路污泥减量模块技术。
+                　　　中试研究，规模为10m3/d。</p>
+
+            <p><b>研究内容</b><br/>
+                利用新型的固体碳源替代脱氮工艺中传统液态碳源
+            </p>
+
+            <p><b>研究进展</b>
+                <br/>
+                固体碳源的试制阶段。
+            </p>
+
+        </div>
+        <div class="textboxbottom"><a href="#"> </a></div>
+
+    </div>
+
+    <div class="tab-pane" id="miniwater">
+        <div class="textboxtop" id="leftmenu5">研究课题:低碳源污水同步脱氮除磷系统研究
+        </div>
+        <div class="textbox">
+            <p><b>研究人员：金展、李琪</b><br/>
+                　　水环境的污染和水体富营养化问题的加剧使控制污水的氮、磷排放越来越受到重视。而传统工艺同时脱氮除磷耗碳量大，新工艺等虽然能降低需碳量，但也存在许多缺点，因此需要进一步的研究。本课题构建了一种集反硝化吸磷，侧流除磷和同时硝化反硝化技术于一体的强化反硝化除磷功能的低碳耗的污水处理系统LS-SDP工艺，更加合理的分配进水中有限的碳源，减少碳源的无效氧化，提高系统脱氮除磷能力。
+                中试研究，规模为1m3/d。</p>
+
+            <p><b>专利</b><br/>
+                 吉芳英;金展;郭倩;李琪;刘娜;陈思。一种强化反硝化除磷功能的低碳源污水处理系统及方法；公开号  CN102659288A</p>
+
+        </div>
+        <div class="textboxbottom"><a href="#"> </a></div>
+        <!-- /.tabbable -->
+    </div>
+    <div class="tab-pane" id="purewater">
+        <div class="textboxtop" id="leftmenu6">研究课题:城镇污水处理系统泥沙淤积机制研究
+        </div>
+        <div class="textbox">
+            <p><b>研究人员：何莉 何晓玲 周卫威</b><br/>
+                本课题来自于“水体污染控制与治理重大科技专项技术创新任务”.
+            </p>
+
+            <p><b>发表论文</b><br/>
+                　吉芳英，何莉，赵易，等. 不同制备方法对Fe3+/TiO2光催化剂活性的影响[J]. 重庆大学学报（自然科学版）,2012,35(3):53-58.</p>
+
+        </div>
+        <div class="textboxbottom"><a
+                href="#"> </a></div>
+    </div>
+    <div class="tab-pane" id="sanxiakuqu">
+        <div class="textboxtop" id="leftmenu7">
+            研究课题:三峡库区环境介质的组成、结构与分布;三峡库区典型污染物的环境行为;三峡库区面源污染.
+        </div>
+        <div class="textbox">
+            <p><b>课题成员:黎司，男，1980年生，博士，博士后。具有化学和环境科学与工程交叉学科背景，关注污染物的检测分析、环境行为。尤其关注三峡库区：</b><br/></p>
+
+            <p><b>发表论文</b><br/>
+                [1] 黎司, 吉芳英*, 周光明, 虞丹尼, 王图锦, 曹琳. 三峡库区水体溶解有机质的荧光光谱特性, 分析化学，2009, 37(9): 1328-1332.
+                [2] 黎司, 吉芳英*, 虞丹尼, 周光明, 何强. 乐果与氧化乐果在金/银核-壳粒子上的SERS研究, 化学学报, 2010, 68(16): 1616-1622.
+                [3] 吉芳英*, 黎司, 虞丹尼, 周光明, 何强. 氧化乐果的振动光谱及其表面增强拉曼散射研究. 分析化学, 2010, 38(8): 1127-1132.
+                [4] 吉芳英, 黎司, 周光明, 虞丹尼, 王图锦, 曹琳,.谭雪梅, 杨大成, 周小义. 重庆主城区两江溶解有机质的荧光光谱特征. 光谱学与光谱分析, 2010, 30(1):
+                233-238.
+                [5] 吉芳英*, 黎司, 虞丹尼, 周光明, 杨大成, 王图锦, 曹琳. 三峡库区消落带腐殖酸的表面增强拉曼光谱, 环境化学, 2011, 30(4): 778-785.
+                [6] 何强, 黎司, 虞丹尼, 周光明, 吉芳英*, Geunter Subklew. 乐果的振动光谱及其在金/银核-壳复合粒子表面的SERS研究. 光谱学与光谱分析, 2010,
+                30(12): 3249-3253.
+                [7] 胡学斌, 吉芳英*, 黎司, 周光明, 虞丹尼, 谭雪梅, 杨大成,Yu Bing. 三峡库区土壤腐殖质的振动光谱研究. 光谱学与光谱分析, 2010, 30(5):
+                1376-1380.
+                [8] 谢志刚，黎司，乐果和氧化乐果水解过程的衰减全反射-傅立叶变换红外光谱(ATR-FTIR)研究, 化学学报，2011. 69(23): 2896-2900.
+                [9] 虞丹尼, 周光明*, 吉芳英, 黎司, 杨大成, 王图锦, 曹琳. 三峡水库溶解有机质的三维荧光光谱研究, 化学学报，2011, 69(8): 960-966.</p>
+        </div>
+        <div class="textboxbottom"><a href="#"> </a></div>
+    </div>
+    <div class="tab-pane" id="duokong">
+        <div class="textboxtop" id="leftmenu8">研究课题:多孔水化硅酸钙磷回收材料的制备与应用研究
+        </div>
+        <div class="textbox">
+            <p><b>课题成员 关伟</b><br/>
+                <b>研究内容：</b><br/>
+                　　本课题的主要研究内容包括制备一种具有多孔结构的水化硅酸钙材料，并设计一套磷回收反应器，以实现以多孔水化硅酸钙为晶种，在其表面以结晶形成羟基磷灰石的形式从污水中回收磷。并通过相关的表征分析手段，探索多孔水化硅酸钙的磷回收机理。
+                <b>研究进展：</b><br/>
+                目前已制备出具有多孔结构的水化硅酸钙磷回收材料，并已设计出一套HAP流化床结晶反应器，下一步的主要工作为通过反应器的实际运行，进一步考察材料的磷回收性能，以及在磷回收过程中的相关磷回收机理。
+            </p>
+
+            <p><b>发表论文</b><br/>
+                [1] Wei Guan, Fangying Ji, Qingkong Chen, Peng Yan, Qian Zhang. Preparation and phosphorus
+                recovery performance of porous calcium silicate hydrate. Ceramics International (2012).
+                [2] 关伟，吉芳英，陈晴空，晏鹏，张千. 水化硅酸钙的制备与磷回收性能表征.功能材料.（已录用待刊）
+                [3]关伟，吉芳英，石磊，徐璇，张琨.水化硅酸钙的磷回收特性.重庆大学学报.（已录用待刊）327．</p>
+        </div>
+        <div class="textboxbottom"><a href="#"> </a>
+        </div>
+    </div>
+    </div>
+    </div>
+{% endif %}
+</div>
+<div id="copyright"><a href="#" target="_blank">重庆大学</a> | <a href="#" target="_blank">城市环境学院</a> | © Copyright
+    Chongqing CQUENV All Rights Reserved
+</div>
+</div>
+</div>
+</body>
+</html>
+
